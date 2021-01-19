@@ -8,6 +8,7 @@ var mongoose = require('mongoose');
 var Mongostore = require('connect-mongo')(session);
 var Passport = require('passport');
 var Flash = require('connect-flash');
+const passport = require('passport');
 
 
 var app = express();
@@ -15,6 +16,8 @@ var app = express();
 app.use(express.static('public'));//this sets our public folder for static file
 
 mongoose.connect('mongodb://localhost/rateme');
+
+require('./config-user/passport');
 
 app.engine('ejs', engine);// this sets the template enfgine of our server to be EJS
 app.set('view engine', 'ejs');// this sets the view engine of EJS that is alfer this we create a folder names views and it get automaticallyy accessed
