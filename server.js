@@ -31,10 +31,7 @@ app.use(session({
     store: new Mongostore({ mongooseConnection: mongoose.connection })
 }))
 
-
-app.get('/', (req, res, next) => {
-    res.render('index');
-})
+require('./routes/user')(app);
 
 app.listen(3000, () => {
     console.log('app running on 3000');
