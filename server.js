@@ -4,8 +4,12 @@ var bodyParser = require('body-parser');
 var ejs = require('ejs');
 var engine = require('ejs-mate');
 var session = require('express-session');//session middleware for express
-var mongoose = require('mongoose')
-var Mongostore = require('connect-mongo')(session)
+var mongoose = require('mongoose');
+var Mongostore = require('connect-mongo')(session);
+var Passport = require('passport');
+var Flash = require('connect-flash');
+
+
 var app = express();
 
 app.use(express.static('public'));//this sets our public folder for static file
@@ -30,6 +34,11 @@ app.use(session({
     //in short if the session is created newest that is it is not logged in then do not save ot to the db
     store: new Mongostore({ mongooseConnection: mongoose.connection })
 }))
+
+app.use(Flash());
+
+app.use(Passport.initialize());
+app.use(Passport.session());
 
 require('./routes/user')(app);
 
