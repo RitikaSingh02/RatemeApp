@@ -17,7 +17,7 @@ var userSchema = mongoose.Schema({
 userSchema.methods.encryptPass = (password) => {
     const bcrypt = require('bcrypt-nodejs');
     const saltRounds = 10;
-    return bcrypt.hashSync(password, bcrypt.genSaltSync(saltRounds), null);
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(saltRounds));
 }
 
-module.exports = mongoose.model('Auth', userSchema);//exported the userschema under the name Auth
+module.exports = mongoose.model('User', userSchema);//exported the userschema under the name User
